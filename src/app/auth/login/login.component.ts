@@ -10,6 +10,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  email = '';
+  password = '';
 
   constructor(
     private fb: FormBuilder,
@@ -21,19 +23,37 @@ export class LoginComponent {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
+  
 
-  login() {
-    if (this.loginForm.valid) {
-      this.router.navigate(['/todos']); // Redirect to home or dashboard
+  // login() {
+  //   if (this.loginForm.valid) {
+  //     this.router.navigate(['/todos']); // Redirect to home or dashboard
 
-      // this.authService.login(this.loginForm.value).subscribe(
-      //   () => {
-      //     this.router.navigate(['/']); // Redirect to home or dashboard
-      //   },
-      //   error => {
-      //     console.error('Login error', error);
-      //   }
-      // );
+  //     this.authService.login(this.loginForm.value).subscribe(
+  //       () => {
+  //         this.router.navigate(['/']); // Redirect to home or dashboard
+  //       },
+  //       error => {
+  //         console.error('Login error', error);
+  //       }
+  //     );
+  //   }
+  // }
+
+  async login() {
+    try {
+      await this.authService.login(this.email, this.password);
+      this.router.navigate(['/todos']);
+    } catch (error) {
+      console.error('Login failed', error);
     }
+  }
+
+  googleLogin() {
+    this.authService.googleSignIn();
+  }
+
+  navigateToRegister() {
+    this.router.navigate(['/register']);
   }
 }

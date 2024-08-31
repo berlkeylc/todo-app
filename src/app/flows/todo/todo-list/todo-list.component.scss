@@ -1,80 +1,94 @@
-.todo-container {
+/* src/app/todo-list/todo-list.component.css */
+.container {
   max-width: 600px;
   margin: 20px auto;
+}
+
+mat-card {
   padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-  text-align: center;
+mat-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+mat-card-header {
   margin-bottom: 20px;
 }
 
-.add-todo-form {
-  display: flex;
-  margin-bottom: 20px;
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
 }
 
-.add-todo-form input {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-right: 10px;
-}
-
-.add-todo-form button {
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.add-todo-form button:disabled {
-  background-color: #6c757d;
-}
-
-.add-todo-form button:hover:not(:disabled) {
-  background-color: #0056b3;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
+mat-list-item {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+  justify-content: space-between;
 }
 
-input[type="checkbox"] {
-  margin-right: 10px;
+mat-icon {
+  margin-right: 8px;
 }
 
-.delete-btn {
+button[mat-icon-button] {
   margin-left: auto;
-  padding: 5px 10px;
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
-.delete-btn:hover {
-  background-color: #c82333;
-}
+// /* Custom mat input styles */
+// .mat-form-field {
+//   width: 100%;
+//   margin: 16px 0;
+// }
 
-.completed {
-  text-decoration: line-through;
-  color: #6c757d;
-}
+// .mat-form-field-label {
+//   color: #1976d2 !important;
+//   font-size: 1rem;
+//   font-weight: bold;
+// }
+
+// .mat-input-element {
+//   padding: 12px !important;
+//   border-radius: 4px !important;
+//   border: 1px solid rgba(0, 0, 0, 0.23);
+// }
+
+// .mat-form-field-appearance-fill .mat-form-field-flex {
+//   background-color: #e3f2fd !important;
+// }
+
+// .mat-form-field-appearance-fill .mat-form-field-flex.mat-focused {
+//   border-color: #1976d2 !important;
+// }
+
+// .mat-form-field-underline {
+//   background-color: #1976d2 !important;
+// }
+
+// .mat-form-field-placeholder {
+//   color: rgba(0, 0, 0, 0.54) !important;
+//   font-style: italic;
+// }
+
+// .mat-form-field-subscript-wrapper .mat-error {
+//   color: #d32f2f !important;
+// }
+
+// /* Adding scale-up animation */
+// .mat-form-field.mat-focused .mat-form-field-flex {
+//   animation: scale-up 0.3s ease;
+// }
+
+// @keyframes scale-up {
+//   0% {
+//     transform: scale(1);
+//   }
+//   100% {
+//     transform: scale(1.05);
+//   }
+// }
+
+
+

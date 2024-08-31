@@ -1,0 +1,69 @@
+/* Basic navbar styling */
+.navbar {
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .navbar-logo {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .navbar-menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-menu li {
+    margin-right: 20px;
+  }
+  
+  .navbar-menu a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logout-button {
+    background-color: #f44336; /* Red */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .logout-button:hover {
+    background-color: #d32f2f; /* Darker red */
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .logout-button {
+    color: white !important; /* Ensure the text color is visible */
+  }
+  
+  .logout-button mat-icon {
+    margin-right: 5px; /* Add space between the icon and text */
+  }
+  
+  

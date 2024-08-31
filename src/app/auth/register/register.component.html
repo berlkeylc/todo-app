@@ -1,19 +1,11 @@
 <div class="register-container">
     <h2>Register</h2>
   
-    <form [formGroup]="registerForm" (ngSubmit)="register()" class="register-form">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input id="username" formControlName="username" type="text" placeholder="Username" />
-        <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
-          <small *ngIf="registerForm.get('username')?.hasError('required')">Username is required</small>
-          <small *ngIf="registerForm.get('username')?.hasError('minlength')">Username must be at least 3 characters long</small>
-        </div>
-      </div>
+    <form [formGroup]="registerForm" class="register-form" (ngSubmit)="onSubmit()">
   
       <div class="form-group">
         <label for="email">Email</label>
-        <input id="email" formControlName="email" type="email" placeholder="Email" />
+        <input id="email" formControlName="email" type="email" placeholder="Email" [(ngModel)]="email"/>
         <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
           <small *ngIf="registerForm.get('email')?.hasError('required')">Email is required</small>
           <small *ngIf="registerForm.get('email')?.hasError('email')">Invalid email format</small>
@@ -22,7 +14,7 @@
   
       <div class="form-group">
         <label for="password">Password</label>
-        <input id="password" formControlName="password" type="password" placeholder="Password" />
+        <input id="password" formControlName="password" type="password" placeholder="Password" [(ngModel)]="password"/>
         <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
           <small *ngIf="registerForm.get('password')?.hasError('required')">Password is required</small>
           <small *ngIf="registerForm.get('password')?.hasError('minlength')">Password must be at least 6 characters long</small>
@@ -39,5 +31,14 @@
   
       <button type="submit" [disabled]="registerForm.invalid">Register</button>
     </form>
+    <div style="margin: 25px;">
+      <button mat-button (click)="googleRegister()" class="w-100" type="button" style=" background-color: white;box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1); padding: 15px;">
+        <div style="display: flex; align-items: center; justify-content: center; padding-left: 25px; width: 100%;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 20px; width: 20px;"><path fill="#4285f4" d="M24.12 25c2.82-2.63 4.07-7 3.32-11.19H16.25v4.63h6.37A5.26 5.26 0 0 1 20.25 22z"></path><path fill="#34a853" d="M5.62 21.31A12 12 0 0 0 24.12 25l-3.87-3a7.16 7.16 0 0 1-10.69-3.75z"></path><path fill="#fbbc02" d="M9.56 18.25c-.5-1.56-.5-3 0-4.56l-3.94-3.07a12.08 12.08 0 0 0 0 10.7z"></path><path fill="#ea4335" d="M9.56 13.69c1.38-4.32 7.25-6.82 11.19-3.13l3.44-3.37a11.8 11.8 0 0 0-18.57 3.43l3.94 3.07z"></path></svg>
+          <span style="font-size: 15px; color: black; width:300px;">Register with Google</span>
+        </div>
+      </button>
+      <button mat-button (click)="navigateToLogin()" style=" background-color: white;box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1); padding: 15px; margin-top: 25px;">Already have an account? Login</button>
+    </div>
   </div>
   

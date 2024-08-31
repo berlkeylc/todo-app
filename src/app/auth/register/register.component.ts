@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -8,8 +8,12 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   registerForm: FormGroup;
+  loading = false;
+  error: string | null = null;
+  email = '';
+  password = '';
 
   constructor(
     private fb: FormBuilder,
@@ -17,35 +21,58 @@ export class RegisterComponent implements OnInit {
     private router: Router
   ) {
     this.registerForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]]
-    }, { validator: this.passwordMatchValidator });
+    }, {
+      validators: this.passwordMatchValidator
+    });
   }
 
-  ngOnInit(): void {}
-
-  passwordMatchValidator(formGroup: FormGroup): { [key: string]: boolean } | null {
-    const password = formGroup.get('password')?.value;
-    const confirmPassword = formGroup.get('confirmPassword')?.value;
+  passwordMatchValidator(form: FormGroup) {
+    const password = form.get('password')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { mismatch: true };
   }
-  
 
-  register(): void {
-    if (this.registerForm.valid) {
-      const { username, email, password } = this.registerForm.value;
-      this.authService.register(username, email, password).subscribe(
-        () => {
-          // Navigate to login or another page after successful registration
-          this.router.navigate(['/login']);
-        },
-        error => {
-          // Handle registration error
-          console.error('Registration error', error);
-        }
-      );
+  // get email(): AbstractControl {
+  //   return this.registerForm.get('email') as AbstractControl;
+  // }
+
+  // get password(): AbstractControl {
+  //   return this.registerForm.get('password') as AbstractControl;
+  // }
+
+  // get confirmPassword(): AbstractControl {
+  //   return this.registerForm.get('confirmPassword') as AbstractControl;
+  // }
+
+  async onSubmit() {
+    if (this.registerForm.invalid) {
+      return;
     }
+    
+    this.loading = true;
+    this.error = null;
+
+    const { email, password } = this.registerForm.value;
+    
+    try {
+      await this.authService.register(email, password);
+      this.router.navigate(['/todos']);
+    } catch (error) {
+      this.error = 'Registration failed. Please try again.';
+      console.error(error);
+    } finally {
+      this.loading = false;
+    }
+  }
+
+  googleRegister() {
+    this.authService.googleSignIn();
+  }
+
+  navigateToLogin() {
+    this.router.navigate(['/login']);
   }
 }

@@ -1,17 +1,35 @@
-<div class="todo-container">
-  <h2>To-Do List</h2>
+<!-- src/app/todo-list/todo-list.component.html -->
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Todo List</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- Form to add new todo -->
+      <form [formGroup]="todoForm" (ngSubmit)="addTodo()">
+        <mat-form-field appearance="fill" class="custom-mat-input">
+          <input matInput formControlName="text" placeholder="Enter todo" style="background-color: transparent !important; box-shadow: none !important;">
+          <mat-error *ngIf="todoForm.get('text')?.hasError('required')">
+            Todo text is required.
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="todoForm.invalid">Add Todo</button>
+      </form>
 
-  <form [formGroup]="todoForm" (ngSubmit)="addTodo()" class="add-todo-form">
-    <input type="text" formControlName="title" placeholder="Add a new task" />
-    <button type="submit" [disabled]="todoForm.invalid">Add</button>
-  </form>
+      <!-- Display list of todos -->
+      <mat-list style="margin-top: 10px;">
+        <mat-list-item *ngFor="let todo of todos" style="margin-top: 20px;">
+          <div style="display: flex; justify-content: space-between;">
+            <mat-icon style="color: #22BB33;">check_circle</mat-icon>
+            {{ todo.text }}
+            <button mat-icon-button (click)="deleteTodo(todo.id)" aria-label="Delete todo">
+              <mat-icon style="color:#f44336;">delete</mat-icon>
+            </button>
 
-  <ul>
-    <li *ngFor="let todo of todos">
-      <input type="checkbox" [checked]="todo.completed" (change)="toggleCompletion(todo)" />
-      <span [ngClass]="{'completed': todo.completed}">{{ todo.title }}</span>
-      <button (click)="deleteTodo(todo.id)" class="delete-btn">Delete</button>
-    </li>
-  </ul>
+          </div>
+         
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
 </div>
-
