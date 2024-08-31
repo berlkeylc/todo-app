@@ -1,0 +1,7 @@
+{
+    "/**":{
+        "target": "https://berlkeylc.github.io/",
+        "secure": true,
+        "changeOrigin":false
+    }
+}
