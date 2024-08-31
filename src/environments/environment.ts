@@ -2,7 +2,7 @@ export const environment = {
     production: false,
     firebaseConfig: {
         apiKey: "AIzaSyC4UeSv8sGWTMygLwLAV4jkkmcLb6RiPVE",
-        authDomain: "todo-app-6b7f0.firebaseapp.com",
+        authDomain: "https://berlkeylc.github.io/",
         projectId: "todo-app-6b7f0",
         storageBucket: "todo-app-6b7f0.appspot.com",
         messagingSenderId: "368569889793",

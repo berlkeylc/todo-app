@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-// import * as functions from 'firebase-functions';
-// import cors from 'cors';
-// const corsHandler = cors({ origin: "http://localhost:4200/" });
+import * as functions from 'firebase-functions';
+import cors from 'cors';
+const corsHandler = cors({ origin: "http://localhost:4200/" });
 // exports.yourFunction = functions.https.onRequest((req, res) => {
 //   corsHandler(req, res, () => {
 //     res.status(200).send("Hello from Firebase!");
@@ -15,5 +15,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'todo-app';
-  
 }
